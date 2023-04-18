@@ -49,16 +49,13 @@ public class AcomodaNumeros extends JFrame {
 
         JPanel panel = new JPanel();
         contentPane.add(panel, BorderLayout.CENTER);
-        panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
+        panel.setLayout(new GridLayout(4,4,4,4));
 
         for (int i = 0; i< 4; i++){
             for (int j = 0; j<4; j++){
-                botonesOriginales[i][j] = new JButton(String.valueOf(tablero[i][j]));
+                botonesOriginales[i][j] = new JButton(String.valueOf(tablero[i][j]+1));
                 botonesOriginales[i][j].setVisible(true);
-                botonesOriginales[i][j].setFont(new Font("Arial", Font.BOLD,24));
+                botonesOriginales[i][j].setFont(new Font("Arial", Font.BOLD,48));
 
                 repaint();
                 revalidate();
@@ -71,18 +68,16 @@ public class AcomodaNumeros extends JFrame {
         for (int i = 0; i< 4; i++){
             finalX = i;
             for (int j = 0; j<4; j++){
-                gbc.gridx = j;
-                gbc.gridy = i;
                 finalY = j;
-                panel.add(botonesOriginales[i][j], gbc);
+                panel.add(botonesOriginales[i][j]);
                 repaint();
                 revalidate();
                 int finalI = i;
                 int finalJ = j;
-                if (botonesOriginales[i][j].getText().equals("15")){
+                if (botonesOriginales[i][j].getText().equals("16")){
                     botonesOriginales[i][j].setText("");
-                    posInvisibleX = j;
-                    posInvisibleY = i;
+                    posInvisibleX = i;
+                    posInvisibleY = j;
                 }
                 int finalX1 = finalX;
                 int finalY1 = finalY;
@@ -109,9 +104,9 @@ public class AcomodaNumeros extends JFrame {
                         }
                         if (sePuedeMover){
                             botonesOriginales[finalX1][finalY1].setText("");
-                            botonesOriginales[posInvisibleY][posInvisibleX].setText(coordsInv[indice]);
-                            posInvisibleY = finalX1;
-                            posInvisibleX = finalY1;
+                            botonesOriginales[posInvisibleX][posInvisibleY].setText(coordsInv[indice]);
+                            posInvisibleX = finalX1;
+                            posInvisibleY = finalY1;
                             repaint();
                             revalidate();
                         }
@@ -120,16 +115,6 @@ public class AcomodaNumeros extends JFrame {
                 });
             }
         }
-    }
-    public static void desordenarPiezas(int array[]){
-            Random r = new Random();
-            int tmp = 0;
-            for (int i = 0; i< array.length; i++){
-                int rnd = r.nextInt(15);
-                tmp = array[i];
-                array[i] = array[rnd];
-                array[rnd] = tmp;
-            }
     }
     public static void desordenarTablero(JButton matriz[][]){
         Random r = new Random();
@@ -145,9 +130,6 @@ public class AcomodaNumeros extends JFrame {
             }
             System.out.println();
         }
-    }
-    public static int distanciaEntreBotones(int x1, int y1, int x2, int y2){
-        return (int) (Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2)));
     }
     public static String[] leerMatriz(JButton matriz[][]){
         int coordsBtnInv [] = new int[2];
