@@ -47,6 +47,7 @@ public class GatoJuego extends JPanel {
                     public void actionPerformed(ActionEvent e) {
                             botonesArreglo[tmp].setText(turno);
                             botonesArreglo[tmp].setEnabled(false);
+
                             switch (tmp){
                                 case 0:
                                     verificadorPuntos(botonesArreglo[1],botonesArreglo[2]);
@@ -91,6 +92,10 @@ public class GatoJuego extends JPanel {
                                     verificadorPuntos(botonesArreglo[0],botonesArreglo[4]);
                                     break;
                             }
+                            if (!empate()){
+                            JOptionPane.showMessageDialog(null,"Empate", "Partida terminada", JOptionPane.INFORMATION_MESSAGE);
+                            reiniciarBotones();
+                        }
                             cambioTurno();
                         }
                 });
@@ -152,6 +157,12 @@ public class GatoJuego extends JPanel {
             return false;
         }
     }
-
-
+    public static boolean empate(){
+        for (int i = 0; i<botonesArreglo.length; i++){
+            if (botonesArreglo[i].isEnabled()){
+                return true;
+            }
+        }
+        return false;
+    }
 }

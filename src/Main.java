@@ -3,10 +3,13 @@ import java.awt.*;
 
 public class Main extends JFrame{
     public static void main(String[] args) {
-        GatoJuego popo = new GatoJuego();
+        /*GatoJuego popo = new GatoJuego();
         popo.setVisible(true);
         Ventana v = new Ventana();
-        v.add(popo);
+        v.add(popo);*/
+        GatoJuego g = new GatoJuego();
+        Ventana v = new Ventana();
+        v.add(g);
 
     }
 }

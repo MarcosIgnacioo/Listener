@@ -115,7 +115,7 @@ public class ListenerClaseDos extends JFrame implements ActionListener {// REPAI
                 // 87w
                 if (e.getKeyCode() == 8){
                     for (int i = 0; i<listaBotones.size(); i++){
-                        panel.remove(listaBotones.get(i));
+                        listaBotones.get(i).setSize(listaBotones.get(i).getWidth()/2, listaBotones.get(i).getHeight()/2);
                         repaint();
                         revalidate();
                     }
@@ -124,6 +124,7 @@ public class ListenerClaseDos extends JFrame implements ActionListener {// REPAI
                     System.out.println("Arrriba");
                     for (int i = 0; i<listaBotones.size(); i++){
                         listaBotones.get(i).setLocation(listaBotones.get(i).getX(), listaBotones.get(i).getY()-20);
+
                         repaint();
                         revalidate();
                     }
@@ -165,6 +166,18 @@ public class ListenerClaseDos extends JFrame implements ActionListener {// REPAI
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+    public static void dormir(int segs){
+        try {
+            Thread.sleep(segs);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    public void focus(){
+        this.requestFocus();
+        this.repaint();
+        this.revalidate();
     }
 
 
